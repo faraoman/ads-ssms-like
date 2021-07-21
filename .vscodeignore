@@ -1,0 +1,8 @@
+.vscode
+src
+installTypings.js
+.gitignore
+.vscodeignore
+.tsconfig
+tsconfig.json
+vsc-extension-quickstart.md
