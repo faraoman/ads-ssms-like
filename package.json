@@ -1,0 +1,209 @@
+{
+	"name": "ssms-like",
+	"displayName": "ssms-like",
+	"description": "Extra commands to mimic SqlServer Management Studio features",
+	"publisher": "faraoman",
+	"repository": {
+		"url": "https://github.com/faraoman/ssms-like"
+	},
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.39.0",
+		"azdata": "*"
+	},
+	"categories": [
+		"Other"
+	],
+	"author": {
+		"email": "faraoman@live.it",
+		"name": "faraoman",
+		"url": "https://github.com/faraoman"
+	},
+	"activationEvents": [
+		"onCommand:ssms-like.takeOffline",
+		"onCommand:ssms-like.bringOnline",
+		"onCommand:ssms-like.shrinkDatabase",
+		"onCommand:ssms-like.shrinkData",
+		"onCommand:ssms-like.shrinkLog",
+		"onCommand:ssms-like.newDatabase",
+		"onCommand:ssms-like.renameDatabase",
+		"onCommand:ssms-like.deleteDatabase",
+		"onCommand:ssms-like.renameTable",
+		"onCommand:ssms-like.deleteTable",
+		"onCommand:ssms-like.renameTableColumn",
+		"onCommand:ssms-like.deleteTableColumn"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"keybindings": [
+			{
+				"command": "ssms-like.renameDatabase",
+				"key": "F2",
+				"when": "explorerResourceAvailableEditorIds"
+			}
+		],
+		"commands": [
+			{
+				"command": "ssms-like.takeOffline",
+				"title": "Take Offline"
+			},
+			{
+				"command": "ssms-like.bringOnline",
+				"title": "Bring Online"
+			},
+			{
+				"command": "ssms-like.shrinkDatabase",
+				"title": "Shrink Database"
+			},
+			{
+				"command": "ssms-like.shrinkData",
+				"title": "Shrink Data"
+			},
+			{
+				"command": "ssms-like.shrinkLog",
+				"title": "Shrink Log"
+			},
+			{
+				"command": "ssms-like.newDatabase",
+				"title": "New Database"
+			},
+			{
+				"command": "ssms-like.renameDatabase",
+				"title": "Rename"
+			},
+			{
+				"command": "ssms-like.deleteDatabase",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.renameTable",
+				"title": "Rename"
+			},
+			{
+				"command": "ssms-like.deleteTable",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.renameTableColumn",
+				"title": "Rename"
+			},
+			{
+				"command": "ssms-like.deleteTableColumn",
+				"title": "Delete"
+			}
+		],
+		"submenus": [
+			{
+				"id": "ssms-like/tasks",
+				"label": "Tasks"
+			}
+		],
+		"menus": {
+			"ssms-like/tasks": [
+				{
+					"command": "ssms-like.takeOffline",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database && nodeStatus != Unavailable",
+					"submenu": "ssms-like/tasks",
+					"group": "1"
+				},
+				{
+					"command": "ssms-like.bringOnline",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database && nodeStatus == Unavailable",
+					"submenu": "ssms-like/tasks",
+					"group": "1"
+				},
+				{
+					"command": "ssms-like.shrinkDatabase",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+					"submenu": "ssms-like/tasks",
+					"group": "2@1"
+				},
+				{
+					"command": "ssms-like.shrinkData",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+					"submenu": "ssms-like/tasks",
+					"group": "2@2"
+				},
+				{
+					"command": "ssms-like.shrinkLog",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+					"submenu": "ssms-like/tasks",
+					"group": "2@3"
+				},
+				{
+					"command": "ssms-like.renameDatabase",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+					"submenu": "ssms-like/tasks",
+					"group": "3@1"
+				},
+				{
+					"command": "ssms-like.deleteDatabase",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+					"submenu": "ssms-like/tasks",
+					"group": "3@2"
+				}
+			],
+			"objectExplorer/item/context": [
+				{
+					"command": "ssms-like.newDatabase",
+					"when": "connectionProvider == MSSQL",
+					"group": "1data1"
+				},
+				{
+					"submenu": "ssms-like/tasks",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
+					"group": "1"
+				},
+				{
+					"command": "ssms-like.renameTable",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
+					"submenu": "ssms-like/tasks",
+					"group": "4@1"
+				},
+				{
+					"command": "ssms-like.deleteTable",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
+					"submenu": "ssms-like/tasks",
+					"group": "4@2"
+				},
+				{
+					"command": "ssms-like.renameTableColumn",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Column",
+					"submenu": "ssms-like/tasks",
+					"group": "4@1"
+				},
+				{
+					"command": "ssms-like.deleteTableColumn",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Column",
+					"submenu": "ssms-like/tasks",
+					"group": "4@2"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"proposedapi": "node installTypings.js",
+		"make": "node_modules/.bin/vsce package",
+		"make-info": "node_modules/.bin/vsce ls"
+	},
+	"devDependencies": {
+		"@types/azdata": "*",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.39.0",
+		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.2",
+		"typescript": "^3.8.3",
+		"vsce": "^1.95.1",
+		"vscode-test": "^1.3.0"
+	}
+}
