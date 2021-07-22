@@ -1,27 +1,33 @@
 # To Do
 
-## Database
+## Features
 
- - [ ] Create
- - [ ] Rename
- - [ ] Delete
- - [ ] Online
- - [ ] Offline
+### Database
+
+ - [X] Create
+ - [X] Rename
+ - [X] Delete
+ - [X] Online
+ - [X] Offline
  - [ ] Shrink
-    - [ ] Database
+    - [X] Database
     - [ ] Data
     - [ ] Log
 
-## Table
+### Table
 
  - [ ] Create
  - [ ] Design
  - [ ] Rename
  - [ ] Delete
 
-## Table-Column
+### Table-Column
 
  - [ ] Create
  - [ ] Rename
  - [ ] Delete
 
+
+## Extension
+
+ - [ ] 

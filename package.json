@@ -21,75 +21,78 @@
 		"url": "https://github.com/faraoman"
 	},
 	"activationEvents": [
-		"onCommand:ssms-like.takeOffline",
-		"onCommand:ssms-like.bringOnline",
-		"onCommand:ssms-like.shrinkDatabase",
-		"onCommand:ssms-like.shrinkData",
-		"onCommand:ssms-like.shrinkLog",
-		"onCommand:ssms-like.newDatabase",
-		"onCommand:ssms-like.renameDatabase",
-		"onCommand:ssms-like.deleteDatabase",
-		"onCommand:ssms-like.renameTable",
-		"onCommand:ssms-like.deleteTable",
-		"onCommand:ssms-like.renameTableColumn",
-		"onCommand:ssms-like.deleteTableColumn"
+		"onCommand:ssms-like.database.takeOffline",
+		"onCommand:ssms-like.database.bringOnline",
+		"onCommand:ssms-like.database.shrinkDatabase",
+		"onCommand:ssms-like.database.shrinkData",
+		"onCommand:ssms-like.database.shrinkLog",
+		"onCommand:ssms-like.database.new",
+		"onCommand:ssms-like.database.rename",
+		"onCommand:ssms-like.database.delete",
+		"onCommand:ssms-like.table.rename",
+		"onCommand:ssms-like.table.delete",
+		"onCommand:ssms-like.column.rename",
+		"onCommand:ssms-like.column.delete"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"keybindings": [
 			{
-				"command": "ssms-like.renameDatabase",
-				"key": "F2",
-				"when": "explorerResourceAvailableEditorIds"
+				"command": "ssms-like.database.rename",
+				"key": "F2"
+			},
+			{
+				"command": "ssms-like.database.delete",
+				"key": "DELETE"
 			}
 		],
 		"commands": [
 			{
-				"command": "ssms-like.takeOffline",
+				"command": "ssms-like.database.takeOffline",
 				"title": "Take Offline"
 			},
 			{
-				"command": "ssms-like.bringOnline",
+				"command": "ssms-like.database.bringOnline",
 				"title": "Bring Online"
 			},
 			{
-				"command": "ssms-like.shrinkDatabase",
+				"command": "ssms-like.database.shrinkDatabase",
 				"title": "Shrink Database"
 			},
 			{
-				"command": "ssms-like.shrinkData",
+				"command": "ssms-like.database.shrinkData",
 				"title": "Shrink Data"
 			},
 			{
-				"command": "ssms-like.shrinkLog",
+				"command": "ssms-like.database.shrinkLog",
 				"title": "Shrink Log"
 			},
 			{
-				"command": "ssms-like.newDatabase",
+				"command": "ssms-like.database.new",
 				"title": "New Database"
 			},
 			{
-				"command": "ssms-like.renameDatabase",
+				"command": "ssms-like.database.rename",
 				"title": "Rename"
 			},
 			{
-				"command": "ssms-like.deleteDatabase",
+				"command": "ssms-like.database.delete",
 				"title": "Delete"
 			},
 			{
-				"command": "ssms-like.renameTable",
+				"command": "ssms-like.table.rename",
 				"title": "Rename"
 			},
 			{
-				"command": "ssms-like.deleteTable",
+				"command": "ssms-like.table.delete",
 				"title": "Delete"
 			},
 			{
-				"command": "ssms-like.renameTableColumn",
+				"command": "ssms-like.column.rename",
 				"title": "Rename"
 			},
 			{
-				"command": "ssms-like.deleteTableColumn",
+				"command": "ssms-like.column.delete",
 				"title": "Delete"
 			}
 		],
@@ -102,43 +105,43 @@
 		"menus": {
 			"ssms-like/tasks": [
 				{
-					"command": "ssms-like.takeOffline",
+					"command": "ssms-like.database.takeOffline",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database && nodeStatus != Unavailable",
 					"submenu": "ssms-like/tasks",
 					"group": "1"
 				},
 				{
-					"command": "ssms-like.bringOnline",
+					"command": "ssms-like.database.bringOnline",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database && nodeStatus == Unavailable",
 					"submenu": "ssms-like/tasks",
 					"group": "1"
 				},
 				{
-					"command": "ssms-like.shrinkDatabase",
+					"command": "ssms-like.database.shrinkDatabase",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
 					"submenu": "ssms-like/tasks",
 					"group": "2@1"
 				},
 				{
-					"command": "ssms-like.shrinkData",
+					"command": "ssms-like.database.shrinkData",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
 					"submenu": "ssms-like/tasks",
 					"group": "2@2"
 				},
 				{
-					"command": "ssms-like.shrinkLog",
+					"command": "ssms-like.database.shrinkLog",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
 					"submenu": "ssms-like/tasks",
 					"group": "2@3"
 				},
 				{
-					"command": "ssms-like.renameDatabase",
+					"command": "ssms-like.database.rename",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
 					"submenu": "ssms-like/tasks",
 					"group": "3@1"
 				},
 				{
-					"command": "ssms-like.deleteDatabase",
+					"command": "ssms-like.database.delete",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
 					"submenu": "ssms-like/tasks",
 					"group": "3@2"
@@ -146,8 +149,8 @@
 			],
 			"objectExplorer/item/context": [
 				{
-					"command": "ssms-like.newDatabase",
-					"when": "connectionProvider == MSSQL",
+					"command": "ssms-like.database.new",
+					"when": "connectionProvider == MSSQL && nodeType && nodeLabel == Databases",
 					"group": "1data1"
 				},
 				{
@@ -156,25 +159,25 @@
 					"group": "1"
 				},
 				{
-					"command": "ssms-like.renameTable",
+					"command": "ssms-like.table.rename",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
 					"submenu": "ssms-like/tasks",
 					"group": "4@1"
 				},
 				{
-					"command": "ssms-like.deleteTable",
+					"command": "ssms-like.table.delete",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
 					"submenu": "ssms-like/tasks",
 					"group": "4@2"
 				},
 				{
-					"command": "ssms-like.renameTableColumn",
+					"command": "ssms-like.column.rename",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Column",
 					"submenu": "ssms-like/tasks",
 					"group": "4@1"
 				},
 				{
-					"command": "ssms-like.deleteTableColumn",
+					"command": "ssms-like.column.delete",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Column",
 					"submenu": "ssms-like/tasks",
 					"group": "4@2"
@@ -189,6 +192,7 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"proposedapi": "node installTypings.js",
+		"make-win": "node_modules\\.bin\\vsce package",
 		"make": "node_modules/.bin/vsce package",
 		"make-info": "node_modules/.bin/vsce ls"
 	},
