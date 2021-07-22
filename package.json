@@ -1,10 +1,10 @@
 {
-	"name": "ssms-like",
-	"displayName": "ssms-like",
-	"description": "Extra commands to mimic SqlServer Management Studio features",
+	"name": "ads-ssms-like",
+	"displayName": "ads-ssms-like",
+	"description": "Azure Data Studio extension that mimic functionalities of Microsoft SqlServer Management Studio",
 	"publisher": "faraoman",
 	"repository": {
-		"url": "https://github.com/faraoman/ssms-like"
+		"url": "https://github.com/faraoman/ads-ssms-like"
 	},
 	"version": "0.0.1",
 	"engines": {
@@ -12,7 +12,8 @@
 		"azdata": "*"
 	},
 	"categories": [
-		"Other"
+		"Other",
+		"Azure"
 	],
 	"author": {
 		"email": "faraoman@live.it",
@@ -203,7 +204,7 @@
 		"glob": "^7.1.6",
 		"mocha": "^7.1.2",
 		"typescript": "^3.8.3",
-		"vsce": "^1.95.1",
+		"vsce": "^1.96.1",
 		"vscode-test": "^1.3.0"
 	}
 }
