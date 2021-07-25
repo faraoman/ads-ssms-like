@@ -8,9 +8,7 @@ import * as vscode from 'vscode';
 // Import the module and reference it with the alias azdata in your code below
 
 import * as azdata from 'azdata';
-import { RunQuery } from './dbManager';
 import * as Commands from "./commands"
-
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -40,8 +38,25 @@ export function activate(context: vscode.ExtensionContext) {
     const shrinkDatabase = vscode.commands.registerCommand(Commands.IDs.Database.shrinkDatabase, Commands.Database.ShrinkDatabase);
     const shrinkData = vscode.commands.registerCommand(Commands.IDs.Database.shrinkData, Commands.Database.ShrinkData);
     const shrinkLog = vscode.commands.registerCommand(Commands.IDs.Database.shrinkLog, Commands.Database.ShrinkLog);
-
     context.subscriptions.push(shrinkDatabase, shrinkData, shrinkLog);
+    //#endregion
+
+    //#region View
+    const renameView = vscode.commands.registerCommand(Commands.IDs.View.rename, Commands.View.RenameAsync);
+    const deleteView = vscode.commands.registerCommand(Commands.IDs.View.delete, Commands.View.DeleteAsync);
+    context.subscriptions.push(renameView, deleteView);
+    //#endregion
+
+    //#region Table
+    const renameTable = vscode.commands.registerCommand(Commands.IDs.Table.rename, Commands.Table.RenameAsync);
+    const deleteTable = vscode.commands.registerCommand(Commands.IDs.Table.delete, Commands.Table.DeleteAsync);
+    context.subscriptions.push(renameTable, deleteTable);
+    //#endregion
+
+    //#region Table-Column
+    const renameColumn = vscode.commands.registerCommand(Commands.IDs.Column.rename, Commands.Table.Column.RenameAsync);
+    const deleteColumn = vscode.commands.registerCommand(Commands.IDs.Column.delete, Commands.Table.Column.DeleteAsync);
+    context.subscriptions.push(renameColumn, deleteColumn);
     //#endregion
 }
 

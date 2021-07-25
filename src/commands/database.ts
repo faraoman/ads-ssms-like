@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as azdata from 'azdata';
 import { RunQuery } from '../dbManager';
+import { GetCurrentTreeNode } from '../utils';
 
 export async function NewAsync(oContext: azdata.ObjectExplorerContext) {
     // vscode.window.showInformationMessage("OOK 6");
@@ -11,7 +12,7 @@ export async function NewAsync(oContext: azdata.ObjectExplorerContext) {
             var result = await RunQuery(connection, "", `USE [master]; CREATE DATABASE [${dbName}];SELECT 0;`);
             if (result.rowCount >= 0) {
                 vscode.window.showInformationMessage(`Database "${dbName}" created`);
-                var node1 = await azdata.objectexplorer.getNode(connection.id, oContext.nodeInfo?.nodePath);
+                var node1 = await GetCurrentTreeNode(oContext);
                 var parent = await node1.getParent();
                 parent.refresh();
             }
@@ -31,7 +32,7 @@ export async function RenameAsync(oContext: azdata.ObjectExplorerContext) {
             var result = await RunQuery(connection, "", `USE [master]; ALTER DATABASE [${oContext.connectionProfile.databaseName}] MODIFY NAME = [${dbName}];SELECT 0;`);
             if (result.rowCount >= 0) {
                 vscode.window.showInformationMessage(`Database "${dbName}" renamed`);
-                var node1 = await azdata.objectexplorer.getNode(connection.id, oContext.nodeInfo?.nodePath);
+                var node1 = await GetCurrentTreeNode(oContext);
                 var parent = await node1.getParent();
                 parent.refresh();
             }
@@ -48,7 +49,7 @@ export async function DeleteAsync(oContext: azdata.ObjectExplorerContext) {
             var result = await RunQuery(connection, "", `USE [master]; ALTER DATABASE [${dbName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [${dbName}]; SELECT 0;`);
             if (result.rowCount >= 0) {
                 vscode.window.showInformationMessage(`Database "${dbName}" deleted`);
-                var node1 = await azdata.objectexplorer.getNode(connection.id, oContext.nodeInfo?.nodePath);
+                var node1 = await GetCurrentTreeNode(oContext);
                 var parent = await node1.getParent();
                 parent.refresh();
             }
@@ -65,7 +66,7 @@ export async function TakeOfflineAsync(oContext: azdata.ObjectExplorerContext) {
             var result = await RunQuery(connection, dbName, `USE [master]; ALTER DATABASE [${dbName}] SET OFFLINE WITH ROLLBACK IMMEDIATE;SELECT 0;`);
             if (result.rowCount >= 0) {
                 vscode.window.showInformationMessage(`Database "${dbName}" offline`);
-                var node1 = await azdata.objectexplorer.getNode(connection.id, oContext.nodeInfo?.nodePath);
+                var node1 = await GetCurrentTreeNode(oContext);
                 var parent = await node1.getParent();
                 parent.refresh();
             }
@@ -80,7 +81,7 @@ export async function BringOnlineAsync(oContext: azdata.ObjectExplorerContext) {
         var result = await RunQuery(connection, dbName, `USE [master]; ALTER DATABASE [${dbName}] SET ONLINE WITH ROLLBACK IMMEDIATE;SELECT 0;`);
         if (result.rowCount >= 0) {
             vscode.window.showInformationMessage(`Database "${dbName}" online`);
-            var node1 = await azdata.objectexplorer.getNode(connection.id, oContext.nodeInfo?.nodePath);
+            var node1 = await GetCurrentTreeNode(oContext);
             var parent = await node1.getParent();
             parent.refresh();
         }
@@ -96,7 +97,7 @@ export async function ShrinkDatabase(oContext: azdata.ObjectExplorerContext) {
             var result = await RunQuery(connection, dbName, `USE [master]; DBCC SHRINKDATABASE(N'${dbName}');SELECT 0;`);
             if (result.rowCount >= 0) {
                 vscode.window.showInformationMessage(`Shrink for database "${dbName}" executed`);
-                var node1 = await azdata.objectexplorer.getNode(connection.id, oContext.nodeInfo?.nodePath);
+                var node1 = await GetCurrentTreeNode(oContext);
                 var parent = await node1.getParent();
                 parent.refresh();
             }

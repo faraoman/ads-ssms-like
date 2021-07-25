@@ -9,10 +9,15 @@ export enum Database {
     "shrinkLog" = "ssms-like.database.shrinkLog"
 }
 
+export enum View {
+    "rename" = "ssms-like.view.rename",
+    "delete" = "ssms-like.view.delete",
+}
+
 export enum Table {
-    "new" = "ssms-like.Table.new",
-    "rename" = "ssms-like.Table.rename",
-    "delete" = "ssms-like.Table.delete",
+    "new" = "ssms-like.table.new",
+    "rename" = "ssms-like.table.rename",
+    "delete" = "ssms-like.table.delete",
 }
 
 export enum Column {

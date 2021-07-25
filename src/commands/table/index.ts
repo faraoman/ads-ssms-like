@@ -1,4 +1,4 @@
-import { Rename } from "./table"
+import { RenameAsync, DeleteAsync } from "./table"
 import * as Column from "./column"
 
-export { Rename, Column }
+export { RenameAsync, DeleteAsync, Column }

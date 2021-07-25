@@ -29,6 +29,8 @@
 		"onCommand:ssms-like.database.new",
 		"onCommand:ssms-like.database.rename",
 		"onCommand:ssms-like.database.delete",
+		"onCommand:ssms-like.view.rename",
+		"onCommand:ssms-like.view.delete",
 		"onCommand:ssms-like.table.rename",
 		"onCommand:ssms-like.table.delete",
 		"onCommand:ssms-like.column.rename",
@@ -40,10 +42,6 @@
 			{
 				"command": "ssms-like.database.rename",
 				"key": "F2"
-			},
-			{
-				"command": "ssms-like.database.delete",
-				"key": "DELETE"
 			}
 		],
 		"commands": [
@@ -77,6 +75,14 @@
 			},
 			{
 				"command": "ssms-like.database.delete",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.view.rename",
+				"title": "Rename"
+			},
+			{
+				"command": "ssms-like.view.delete",
 				"title": "Delete"
 			},
 			{
@@ -159,16 +165,28 @@
 					"group": "1"
 				},
 				{
+					"command": "ssms-like.view.rename",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == View",
+					"submenu": "ssms-like/tasks",
+					"group": "2@1"
+				},
+				{
+					"command": "ssms-like.view.delete",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == View",
+					"submenu": "ssms-like/tasks",
+					"group": "2@2"
+				},
+				{
 					"command": "ssms-like.table.rename",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
 					"submenu": "ssms-like/tasks",
-					"group": "4@1"
+					"group": "3@1"
 				},
 				{
 					"command": "ssms-like.table.delete",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Table",
 					"submenu": "ssms-like/tasks",
-					"group": "4@2"
+					"group": "3@2"
 				},
 				{
 					"command": "ssms-like.column.rename",
