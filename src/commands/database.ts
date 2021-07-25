@@ -107,8 +107,8 @@ export async function ShrinkDatabase(oContext: azdata.ObjectExplorerContext) {
 }
 
 export async function ShrinkData(oContext: azdata.ObjectExplorerContext) {
-    vscode.window.showInformationMessage("OOK 2");/*DBCC SHRINKFILE (N'DBNAME' , 0, TRUNCATEONLY)*/
+    vscode.window.showInformationMessage("TO DO");/*DBCC SHRINKFILE (N'DBNAME' , 0, TRUNCATEONLY)*/
 }
 export async function ShrinkLog(oContext: azdata.ObjectExplorerContext) {
-    vscode.window.showInformationMessage("OOK 3");/*DBCC SHRINKFILE (N'DBNAME_log' , 0, TRUNCATEONLY)*/
+    vscode.window.showInformationMessage("TO DO");/*DBCC SHRINKFILE (N'DBNAME_log' , 0, TRUNCATEONLY)*/
 }

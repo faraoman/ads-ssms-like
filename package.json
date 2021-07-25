@@ -1,11 +1,12 @@
 {
 	"name": "ads-ssms-like",
-	"displayName": "ads-ssms-like",
+	"displayName": "SSMS Like",
 	"description": "Azure Data Studio extension that mimic functionalities of Microsoft SqlServer Management Studio",
 	"publisher": "faraoman",
 	"repository": {
 		"url": "https://github.com/faraoman/ads-ssms-like"
 	},
+	"icon": "images/logo.png",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.39.0",
@@ -38,12 +39,6 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"keybindings": [
-			{
-				"command": "ssms-like.database.rename",
-				"key": "F2"
-			}
-		],
 		"commands": [
 			{
 				"command": "ssms-like.database.takeOffline",
@@ -212,7 +207,8 @@
 		"proposedapi": "node installTypings.js",
 		"make-win": "node_modules\\.bin\\vsce package",
 		"make": "node_modules/.bin/vsce package",
-		"make-info": "node_modules/.bin/vsce ls"
+		"make-info": "node_modules/.bin/vsce ls",
+		"make-win-info": "node_modules\\.bin\\vsce ls"
 	},
 	"devDependencies": {
 		"@types/azdata": "*",
