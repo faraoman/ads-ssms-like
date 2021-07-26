@@ -60,10 +60,19 @@ export function activate(context: vscode.ExtensionContext) {
     //#endregion
 
     //#region Table-Indexes
-    const renameIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rename, Commands.Table.Indexes.RenameAsync);
-    const enableIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rebuild, Commands.Table.Indexes.RebuildAsync);
+    const rebuildIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rebuild, Commands.Table.Indexes.RebuildAsync);
+    const reorganizeIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.reorganize, Commands.Table.Indexes.ReorganizeAsync);
     const disableIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.disable, Commands.Table.Indexes.DisableAsync);
-    context.subscriptions.push(renameIndex, enableIndex, disableIndex);
+    const renameIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rename, Commands.Table.Indexes.RenameAsync);
+    const deleteIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.delete, Commands.Table.Indexes.DeleteAsync);
+    context.subscriptions.push(rebuildIndex, reorganizeIndex, disableIndex, renameIndex, deleteIndex);
+    //#endregion
+
+    //#region  Table-Trigger
+    const enableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.enable, Commands.Table.Trigger.EnableAsync);
+    const disableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.disable, Commands.Table.Trigger.DisableAsync);
+    const deleteTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.delete, Commands.Table.Trigger.DeleteAsync);
+    context.subscriptions.push(enableTrigger, disableTrigger, deleteTrigger);
     //#endregion
 }
 

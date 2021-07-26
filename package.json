@@ -39,7 +39,10 @@
 		"onCommand:ssms-like.column.delete",
 		"onCommand:ssms-like.indexes.rename",
 		"onCommand:ssms-like.indexes.enable",
-		"onCommand:ssms-like.indexes.disable"
+		"onCommand:ssms-like.indexes.disable",
+		"onCommand:ssms-like.trigger.enable",
+		"onCommand:ssms-like.trigger.disable",
+		"onCommand:ssms-like.trigger.delete"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -105,16 +108,36 @@
 				"title": "Delete"
 			},
 			{
-				"command": "ssms-like.indexes.rename",
-				"title": "Rename"
+				"command": "ssms-like.indexes.rebuild",
+				"title": "Rebuild"
 			},
 			{
-				"command": "ssms-like.indexes.rebuild",
-				"title": "Enable"
+				"command": "ssms-like.indexes.reorganize",
+				"title": "Reorganize"
 			},
 			{
 				"command": "ssms-like.indexes.disable",
 				"title": "Disable"
+			},
+			{
+				"command": "ssms-like.indexes.rename",
+				"title": "Rename"
+			},
+			{
+				"command": "ssms-like.indexes.delete",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.trigger.enable",
+				"title": "Enable"
+			},
+			{
+				"command": "ssms-like.trigger.disable",
+				"title": "Disable"
+			},
+			{
+				"command": "ssms-like.trigger.delete",
+				"title": "Delete"
 			}
 		],
 		"submenus": [
@@ -216,19 +239,44 @@
 					"group": "4@2"
 				},
 				{
-					"command": "ssms-like.indexes.rename",
-					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
-					"group": "5@0"
-				},
-				{
 					"command": "ssms-like.indexes.rebuild",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
-					"group": "5@1"
+					"group": "1@1"
+				},
+				{
+					"command": "ssms-like.indexes.reorganize",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
+					"group": "1@2"
 				},
 				{
 					"command": "ssms-like.indexes.disable",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
-					"group": "5@2"
+					"group": "1@3"
+				},
+				{
+					"command": "ssms-like.indexes.rename",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
+					"group": "2@1"
+				},
+				{
+					"command": "ssms-like.indexes.delete",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
+					"group": "2@2"
+				},
+				{
+					"command": "ssms-like.trigger.enable",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Trigger && nodeStatus == Disabled",
+					"group": "1@1"
+				},
+				{
+					"command": "ssms-like.trigger.disable",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Trigger && nodeStatus != Disabled",
+					"group": "1@2"
+				},
+				{
+					"command": "ssms-like.trigger.delete",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Trigger",
+					"group": "2@1"
 				}
 			]
 		}

@@ -29,15 +29,15 @@ export enum Column {
 }
 
 export enum Indexes {
+    "rebuild" = "ssms-like.indexes.rebuild",
+    "reorganize" = "ssms-like.indexes.reorganize",
+    "disable" = "ssms-like.indexes.disable",
     "rename" = "ssms-like.indexes.rename",
     "delete" = "ssms-like.indexes.delete",
-    "rebuild" = "ssms-like.indexes.rebuild",
-    "disable" = "ssms-like.indexes.disable",
     "comment" = "ssms-like.indexes.comment",
 }
 
 export enum Trigger {
-    "rename" = "ssms-like.trigger.rename",
     "delete" = "ssms-like.trigger.delete",
     "enable" = "ssms-like.trigger.enable",
     "disable" = "ssms-like.trigger.disable",

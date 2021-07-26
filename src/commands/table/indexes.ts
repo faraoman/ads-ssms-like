@@ -3,6 +3,58 @@ import * as azdata from 'azdata';
 import { RunQuery } from '../../dbManager';
 import { GetCurrentTreeNode, GetParentByType } from '../../utils';
 
+export async function RebuildAsync(oContext: azdata.ObjectExplorerContext) {
+    if (!oContext || !oContext.connectionProfile) { return; }
+    var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);
+    var indexName = currentMenuItem.metadata?.name || currentMenuItem.label.split(' ')[0];
+    var tableMenuItem = await GetParentByType(currentMenuItem, "table");
+    const connection = oContext.connectionProfile;
+    var result = await RunQuery(connection, "", `USE [${connection.databaseName}]; ALTER INDEX ${indexName} ON ${tableMenuItem.metadata?.schema}.${tableMenuItem.metadata?.name} REBUILD;SELECT 0;`);
+    if (result.rowCount >= 0) {
+        vscode.window.showInformationMessage(`Index "${indexName}" rebuilded`);
+        var parent = await currentMenuItem.getParent();
+        parent.refresh();
+    }
+}
+
+export async function ReorganizeAsync(oContext: azdata.ObjectExplorerContext) {
+    if (!oContext || !oContext.connectionProfile) { return; }
+    var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);
+    var indexName = currentMenuItem.metadata?.name || currentMenuItem.label.split(' ')[0];
+    var tableMenuItem = await GetParentByType(currentMenuItem, "table");
+    const connection = oContext.connectionProfile;
+    var result = await RunQuery(connection, "", `USE [${connection.databaseName}]; ALTER INDEX ${indexName} ON ${tableMenuItem.metadata?.schema}.${tableMenuItem.metadata?.name} REORGANIZE;SELECT 0;`);
+    if (result.rowCount >= 0) {
+        vscode.window.showInformationMessage(`Index "${indexName}" reorganized`);
+        var parent = await currentMenuItem.getParent();
+        parent.refresh();
+    }
+}
+
+export async function DisableAsync(oContext: azdata.ObjectExplorerContext) {
+    if (!oContext || !oContext.connectionProfile) { return; }
+    var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);
+    var indexName = currentMenuItem.metadata?.name || currentMenuItem.label.split(' ')[0];
+    var tableMenuItem = await GetParentByType(currentMenuItem, "table");
+    const connection = oContext.connectionProfile;
+    var result = await RunQuery(connection, "", `USE [${connection.databaseName}]; ALTER INDEX ${indexName} ON ${tableMenuItem.metadata?.schema}.${tableMenuItem.metadata?.name} DISABLE;SELECT 0;`);
+    if (result.rowCount >= 0) {
+        vscode.window.showInformationMessage(`Index "${indexName}" disabled`);
+        var parent = await currentMenuItem.getParent();
+        parent.refresh();
+    }
+    // var newColumnName = await vscode.window.showInputBox({ title: "New Index Name", prompt: `New name of index on ${oContext.connectionProfile.serverName}` });
+    // if (newColumnName) {
+    //     const connection = oContext.connectionProfile;
+    //     var result = await RunQuery(connection, "", `USE [${connection.databaseName}]; EXEC sp_rename '${tableMenuItem.metadata?.schema}.${tableMenuItem.metadata?.name}.${indexName}', '${newColumnName}', 'INDEX';SELECT 0;`);
+    //     if (result.rowCount >= 0) {
+    //         vscode.window.showInformationMessage(`Index "${indexName}" renamed as "${newColumnName}"`);
+    //         var parent = await currentMenuItem.getParent();
+    //         parent.refresh();
+    //     }
+    // }
+}
+
 export async function RenameAsync(oContext: azdata.ObjectExplorerContext) {
     if (!oContext || !oContext.connectionProfile) { return; }
     var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);
@@ -37,42 +89,4 @@ export async function DeleteAsync(oContext: azdata.ObjectExplorerContext) {
             }
         }
     }
-}
-
-export async function RebuildAsync(oContext: azdata.ObjectExplorerContext) {
-    if (!oContext || !oContext.connectionProfile) { return; }
-    var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);
-    var indexName = currentMenuItem.metadata?.name || currentMenuItem.label.split(' ')[0];
-    var tableMenuItem = await GetParentByType(currentMenuItem, "table");
-    const connection = oContext.connectionProfile;
-    var result = await RunQuery(connection, "", `USE [${connection.databaseName}]; ALTER INDEX ${indexName} ON ${tableMenuItem.metadata?.schema}.${tableMenuItem.metadata?.name} REBUILD;SELECT 0;`);
-    if (result.rowCount >= 0) {
-        vscode.window.showInformationMessage(`Index "${indexName}" enabled`);
-        var parent = await currentMenuItem.getParent();
-        parent.refresh();
-    }
-}
-
-export async function DisableAsync(oContext: azdata.ObjectExplorerContext) {
-    if (!oContext || !oContext.connectionProfile) { return; }
-    var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);
-    var indexName = currentMenuItem.metadata?.name || currentMenuItem.label.split(' ')[0];
-    var tableMenuItem = await GetParentByType(currentMenuItem, "table");
-    const connection = oContext.connectionProfile;
-    var result = await RunQuery(connection, "", `USE [${connection.databaseName}]; ALTER INDEX ${indexName} ON ${tableMenuItem.metadata?.schema}.${tableMenuItem.metadata?.name} DISABLE;SELECT 0;`);
-    if (result.rowCount >= 0) {
-        vscode.window.showInformationMessage(`Index "${indexName}" disabled`);
-        var parent = await currentMenuItem.getParent();
-        parent.refresh();
-    }
-    // var newColumnName = await vscode.window.showInputBox({ title: "New Index Name", prompt: `New name of index on ${oContext.connectionProfile.serverName}` });
-    // if (newColumnName) {
-    //     const connection = oContext.connectionProfile;
-    //     var result = await RunQuery(connection, "", `USE [${connection.databaseName}]; EXEC sp_rename '${tableMenuItem.metadata?.schema}.${tableMenuItem.metadata?.name}.${indexName}', '${newColumnName}', 'INDEX';SELECT 0;`);
-    //     if (result.rowCount >= 0) {
-    //         vscode.window.showInformationMessage(`Index "${indexName}" renamed as "${newColumnName}"`);
-    //         var parent = await currentMenuItem.getParent();
-    //         parent.refresh();
-    //     }
-    // }
 }

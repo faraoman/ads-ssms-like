@@ -33,10 +33,9 @@
 ### Table-Trigger
 
  - [ ] Create
- - [ ] Rename
- - [ ] Delete
- - [ ] Enable `https://docs.microsoft.com/it-it/sql/t-sql/statements/disable-trigger-transact-sql?view=sql-server-ver15`
- - [ ] Disable `https://docs.microsoft.com/it-it/sql/t-sql/statements/disable-trigger-transact-sql?view=sql-server-ver15`
+ - [X] Delete
+ - [X] Enable
+ - [X] Disable
  
 ### Table-Indexes
 
@@ -44,11 +43,8 @@
  - [X] Rename
  - [X] Delete
  - [X] Rebuild
- - [ ] Reorganize
+ - [X] Reorganize
  - [X] Disable
- - [ ] RebuildAll
- - [ ] ReorganizeAll
- - [ ] DisableAll
 
 ## Extension
 
