@@ -3,7 +3,6 @@ import * as azdata from 'azdata';
 import { RunQuery } from '../../dbManager';
 import { GetCurrentTreeNode, GetParentByType } from '../../utils';
 
-
 export async function RenameAsync(oContext: azdata.ObjectExplorerContext) {
     if (!oContext || !oContext.connectionProfile) { return; }
     var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);

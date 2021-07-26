@@ -43,3 +43,7 @@ export enum Trigger {
     "disable" = "ssms-like.trigger.disable",
     "comment" = "ssms-like.trigger.comment",
 }
+
+export enum Constraint {
+    "delete" = "ssms-like.constraint.delete",
+}

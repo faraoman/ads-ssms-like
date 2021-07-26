@@ -42,7 +42,8 @@
 		"onCommand:ssms-like.indexes.disable",
 		"onCommand:ssms-like.trigger.enable",
 		"onCommand:ssms-like.trigger.disable",
-		"onCommand:ssms-like.trigger.delete"
+		"onCommand:ssms-like.trigger.delete",
+		"onCommand:ssms-like.constraint.delete"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -137,6 +138,10 @@
 			},
 			{
 				"command": "ssms-like.trigger.delete",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.constraint.delete",
 				"title": "Delete"
 			}
 		],
@@ -277,6 +282,11 @@
 					"command": "ssms-like.trigger.delete",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Trigger",
 					"group": "2@1"
+				},
+				{
+					"command": "ssms-like.constraint.delete",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Constraint",
+					"group": "1@1"
 				}
 			]
 		}

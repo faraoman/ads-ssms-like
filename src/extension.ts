@@ -68,11 +68,16 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(rebuildIndex, reorganizeIndex, disableIndex, renameIndex, deleteIndex);
     //#endregion
 
-    //#region  Table-Trigger
+    //#region Table-Trigger
     const enableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.enable, Commands.Table.Trigger.EnableAsync);
     const disableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.disable, Commands.Table.Trigger.DisableAsync);
     const deleteTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.delete, Commands.Table.Trigger.DeleteAsync);
     context.subscriptions.push(enableTrigger, disableTrigger, deleteTrigger);
+    //#endregion
+
+    //#region Table-Constraint
+    const deleteConstraint = vscode.commands.registerCommand(Commands.IDs.Constraint.delete, Commands.Table.Constraint.DeleteAsync);
+    context.subscriptions.push(deleteConstraint);
     //#endregion
 }
 
