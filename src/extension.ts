@@ -22,62 +22,90 @@ export function activate(context: vscode.ExtensionContext) {
     // The commandId parameter must match the command field in package.json
 
     //#region Add-Rename-Delete Database
-    const newDatabase = vscode.commands.registerCommand(Commands.IDs.Database.new, Commands.Database.NewAsync);
-    const renameDatabase = vscode.commands.registerCommand(Commands.IDs.Database.rename, Commands.Database.RenameAsync);
-    const deleteDatabase = vscode.commands.registerCommand(Commands.IDs.Database.delete, Commands.Database.DeleteAsync);
-    context.subscriptions.push(newDatabase, renameDatabase, deleteDatabase);
+    {
+        const newDatabase = vscode.commands.registerCommand(Commands.IDs.Database.new, Commands.Database.NewAsync);
+        const renameDatabase = vscode.commands.registerCommand(Commands.IDs.Database.rename, Commands.Database.RenameAsync);
+        const deleteDatabase = vscode.commands.registerCommand(Commands.IDs.Database.delete, Commands.Database.DeleteAsync);
+        context.subscriptions.push(newDatabase, renameDatabase, deleteDatabase);
+    }
     //#endregion
 
     //#region Online-Offline Database
-    const setDatabaseOffline = vscode.commands.registerCommand(Commands.IDs.Database.takeOffline, Commands.Database.TakeOfflineAsync);
-    const setDatabaseOnline = vscode.commands.registerCommand(Commands.IDs.Database.bringOnline, Commands.Database.BringOnlineAsync);
-    context.subscriptions.push(setDatabaseOffline, setDatabaseOnline);
+    {
+        const setDatabaseOffline = vscode.commands.registerCommand(Commands.IDs.Database.takeOffline, Commands.Database.TakeOfflineAsync);
+        const setDatabaseOnline = vscode.commands.registerCommand(Commands.IDs.Database.bringOnline, Commands.Database.BringOnlineAsync);
+        context.subscriptions.push(setDatabaseOffline, setDatabaseOnline);
+    }
     //#endregion
 
     //#region Shink DATA-Log
-    const shrinkDatabase = vscode.commands.registerCommand(Commands.IDs.Database.shrinkDatabase, Commands.Database.ShrinkDatabase);
-    const shrinkData = vscode.commands.registerCommand(Commands.IDs.Database.shrinkData, Commands.Database.ShrinkData);
-    const shrinkLog = vscode.commands.registerCommand(Commands.IDs.Database.shrinkLog, Commands.Database.ShrinkLog);
-    context.subscriptions.push(shrinkDatabase, shrinkData, shrinkLog);
+    {
+        const shrinkDatabase = vscode.commands.registerCommand(Commands.IDs.Database.shrinkDatabase, Commands.Database.ShrinkDatabase);
+        const shrinkData = vscode.commands.registerCommand(Commands.IDs.Database.shrinkData, Commands.Database.ShrinkData);
+        const shrinkLog = vscode.commands.registerCommand(Commands.IDs.Database.shrinkLog, Commands.Database.ShrinkLog);
+        context.subscriptions.push(shrinkDatabase, shrinkData, shrinkLog);
+    }
     //#endregion
 
     //#region View
-    const renameView = vscode.commands.registerCommand(Commands.IDs.View.rename, Commands.View.RenameAsync);
-    const deleteView = vscode.commands.registerCommand(Commands.IDs.View.delete, Commands.View.DeleteAsync);
-    context.subscriptions.push(renameView, deleteView);
+    {
+        const recompileView = vscode.commands.registerCommand(Commands.IDs.View.recompile, Commands.View.RecompileAsync);
+        const renameView = vscode.commands.registerCommand(Commands.IDs.View.rename, Commands.View.RenameAsync);
+        const deleteView = vscode.commands.registerCommand(Commands.IDs.View.delete, Commands.View.DeleteAsync);
+        context.subscriptions.push(recompileView, renameView, deleteView);
+    }
     //#endregion
 
     //#region Table
-    const renameTable = vscode.commands.registerCommand(Commands.IDs.Table.rename, Commands.Table.RenameAsync);
-    const deleteTable = vscode.commands.registerCommand(Commands.IDs.Table.delete, Commands.Table.DeleteAsync);
-    context.subscriptions.push(renameTable, deleteTable);
+    {
+        const renameTable = vscode.commands.registerCommand(Commands.IDs.Table.rename, Commands.Table.RenameAsync);
+        const deleteTable = vscode.commands.registerCommand(Commands.IDs.Table.delete, Commands.Table.DeleteAsync);
+        context.subscriptions.push(renameTable, deleteTable);
+    }
     //#endregion
 
     //#region Table-Column
-    const renameColumn = vscode.commands.registerCommand(Commands.IDs.Column.rename, Commands.Table.Column.RenameAsync);
-    const deleteColumn = vscode.commands.registerCommand(Commands.IDs.Column.delete, Commands.Table.Column.DeleteAsync);
-    context.subscriptions.push(renameColumn, deleteColumn);
+    {
+        const renameColumn = vscode.commands.registerCommand(Commands.IDs.Column.rename, Commands.Table.Column.RenameAsync);
+        const deleteColumn = vscode.commands.registerCommand(Commands.IDs.Column.delete, Commands.Table.Column.DeleteAsync);
+        context.subscriptions.push(renameColumn, deleteColumn);
+    }
     //#endregion
 
     //#region Table-Indexes
-    const rebuildIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rebuild, Commands.Table.Indexes.RebuildAsync);
-    const reorganizeIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.reorganize, Commands.Table.Indexes.ReorganizeAsync);
-    const disableIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.disable, Commands.Table.Indexes.DisableAsync);
-    const renameIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rename, Commands.Table.Indexes.RenameAsync);
-    const deleteIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.delete, Commands.Table.Indexes.DeleteAsync);
-    context.subscriptions.push(rebuildIndex, reorganizeIndex, disableIndex, renameIndex, deleteIndex);
+    {
+        const rebuildIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rebuild, Commands.Table.Indexes.RebuildAsync);
+        const reorganizeIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.reorganize, Commands.Table.Indexes.ReorganizeAsync);
+        const disableIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.disable, Commands.Table.Indexes.DisableAsync);
+        const renameIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rename, Commands.Table.Indexes.RenameAsync);
+        const deleteIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.delete, Commands.Table.Indexes.DeleteAsync);
+        context.subscriptions.push(rebuildIndex, reorganizeIndex, disableIndex, renameIndex, deleteIndex);
+    }
     //#endregion
 
     //#region Table-Trigger
-    const enableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.enable, Commands.Table.Trigger.EnableAsync);
-    const disableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.disable, Commands.Table.Trigger.DisableAsync);
-    const deleteTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.delete, Commands.Table.Trigger.DeleteAsync);
-    context.subscriptions.push(enableTrigger, disableTrigger, deleteTrigger);
+    {
+        const enableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.enable, Commands.Table.Trigger.EnableAsync);
+        const disableTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.disable, Commands.Table.Trigger.DisableAsync);
+        const deleteTrigger = vscode.commands.registerCommand(Commands.IDs.Trigger.delete, Commands.Table.Trigger.DeleteAsync);
+        context.subscriptions.push(enableTrigger, disableTrigger, deleteTrigger);
+    }
     //#endregion
 
     //#region Table-Constraint
-    const deleteConstraint = vscode.commands.registerCommand(Commands.IDs.Constraint.delete, Commands.Table.Constraint.DeleteAsync);
-    context.subscriptions.push(deleteConstraint);
+    {
+        const deleteConstraint = vscode.commands.registerCommand(Commands.IDs.Constraint.delete, Commands.Table.Constraint.DeleteAsync);
+        context.subscriptions.push(deleteConstraint);
+    }
+    //#endregion
+
+    //#region Stored Procedure
+    {
+        const recompileStoredProcedure = vscode.commands.registerCommand(Commands.IDs.StoredProcedure.recompile, Commands.StoredProcedure.RecompileAsync);
+        const renameStoredProcedure = vscode.commands.registerCommand(Commands.IDs.StoredProcedure.rename, Commands.StoredProcedure.RenameAsync);
+        const deleteStoredProcedure = vscode.commands.registerCommand(Commands.IDs.StoredProcedure.delete, Commands.StoredProcedure.DeleteAsync);
+        context.subscriptions.push(recompileStoredProcedure, renameStoredProcedure, deleteStoredProcedure);
+    }
     //#endregion
 }
 

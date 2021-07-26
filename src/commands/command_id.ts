@@ -11,6 +11,7 @@ export enum Database {
 }
 
 export enum View {
+    "recompile" = "ssms-like.view.recompile",
     "rename" = "ssms-like.view.rename",
     "delete" = "ssms-like.view.delete",
 }
@@ -46,4 +47,10 @@ export enum Trigger {
 
 export enum Constraint {
     "delete" = "ssms-like.constraint.delete",
+}
+
+export enum StoredProcedure {
+    "recompile" = "ssms-like.storedProcedure.recompile",
+    "rename" = "ssms-like.storedProcedure.rename",
+    "delete" = "ssms-like.storedProcedure.delete",
 }

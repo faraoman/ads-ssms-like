@@ -5,7 +5,7 @@ import { GetCurrentTreeNode, GetParentByType } from '../../utils';
 
 export async function RenameAsync(oContext: azdata.ObjectExplorerContext) {
     if (!oContext || !oContext.connectionProfile) { return; }
-    var currentMenuItem = await GetCurrentTreeNode(oContext); //  await azdata.objectexplorer.getNode(oContext.connectionProfile.id, oContext.nodeInfo?.nodePath);
+    var currentMenuItem = await GetCurrentTreeNode(oContext);
     var columnName = currentMenuItem.metadata?.name || currentMenuItem.label.split(' ')[0];
     var tableMenuItem = await GetParentByType(currentMenuItem, "table");
     var newColumnName = await vscode.window.showInputBox({ title: "New Column Name", prompt: `New name of column on ${oContext.connectionProfile.serverName}` });

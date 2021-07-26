@@ -1,8 +1,25 @@
 import * as vscode from 'vscode';
 import * as azdata from 'azdata';
 import { GetCurrentTreeNode } from '../utils';
-import { RunQuery } from '../dbManager';
+import { RunExec, RunQuery } from '../dbManager';
 
+export async function RecompileAsync(oContext: azdata.ObjectExplorerContext) {
+    if (oContext && oContext.connectionProfile) {
+        var currentMenuItem = await GetCurrentTreeNode(oContext);
+        var viewName = currentMenuItem.metadata?.name;
+        var answer = await vscode.window.showWarningMessage(`Recompile view "${viewName}"?`, "Yes", "No");
+        if (answer == "Yes") {
+            const connection = oContext.connectionProfile;
+            var result = await RunExec(connection, `USE [${connection.databaseName}]; EXEC sp_refreshview '${currentMenuItem.metadata?.schema}.${currentMenuItem.metadata?.name}';`);
+            if (result.rowCount >= 0) {
+                vscode.window.showInformationMessage(`View "${viewName}" recompiled`);
+                var node1 = await GetCurrentTreeNode(oContext);
+                var parent = await node1.getParent();
+                parent.refresh();
+            }
+        }
+    }
+}
 
 export async function RenameAsync(oContext: azdata.ObjectExplorerContext) {
     if (!oContext || !oContext.connectionProfile) { return; }

@@ -31,6 +31,7 @@
 		"onCommand:ssms-like.database.new",
 		"onCommand:ssms-like.database.rename",
 		"onCommand:ssms-like.database.delete",
+		"onCommand:ssms-like.view.recompile",
 		"onCommand:ssms-like.view.rename",
 		"onCommand:ssms-like.view.delete",
 		"onCommand:ssms-like.table.rename",
@@ -43,7 +44,10 @@
 		"onCommand:ssms-like.trigger.enable",
 		"onCommand:ssms-like.trigger.disable",
 		"onCommand:ssms-like.trigger.delete",
-		"onCommand:ssms-like.constraint.delete"
+		"onCommand:ssms-like.constraint.delete",
+		"onCommand:ssms-like.storedProcedure.recompile",
+		"onCommand:ssms-like.storedProcedure.rename",
+		"onCommand:ssms-like.storedProcedure.delete"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -83,6 +87,10 @@
 			{
 				"command": "ssms-like.database.delete",
 				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.view.recompile",
+				"title": "Recompile"
 			},
 			{
 				"command": "ssms-like.view.rename",
@@ -142,6 +150,18 @@
 			},
 			{
 				"command": "ssms-like.constraint.delete",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.storedProcedure.recompile",
+				"title": "Recompile"
+			},
+			{
+				"command": "ssms-like.storedProcedure.rename",
+				"title": "Rename"
+			},
+			{
+				"command": "ssms-like.storedProcedure.delete",
 				"title": "Delete"
 			}
 		],
@@ -206,6 +226,12 @@
 					"submenu": "ssms-like/tasks",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Database",
 					"group": "1"
+				},
+				{
+					"command": "ssms-like.view.recompile",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == View",
+					"submenu": "ssms-like/tasks",
+					"group": "1@1"
 				},
 				{
 					"command": "ssms-like.view.rename",
@@ -287,6 +313,21 @@
 					"command": "ssms-like.constraint.delete",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Constraint",
 					"group": "1@1"
+				},
+				{
+					"command": "ssms-like.storedProcedure.recompile",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == StoredProcedure",
+					"group": "1@1"
+				},
+				{
+					"command": "ssms-like.storedProcedure.rename",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == StoredProcedure",
+					"group": "2@1"
+				},
+				{
+					"command": "ssms-like.storedProcedure.delete",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == StoredProcedure",
+					"group": "2@2"
 				}
 			]
 		}
