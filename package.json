@@ -27,6 +27,7 @@
 		"onCommand:ssms-like.database.shrinkDatabase",
 		"onCommand:ssms-like.database.shrinkData",
 		"onCommand:ssms-like.database.shrinkLog",
+		"onCommand:ssms-like.database.comment",
 		"onCommand:ssms-like.database.new",
 		"onCommand:ssms-like.database.rename",
 		"onCommand:ssms-like.database.delete",
@@ -35,7 +36,10 @@
 		"onCommand:ssms-like.table.rename",
 		"onCommand:ssms-like.table.delete",
 		"onCommand:ssms-like.column.rename",
-		"onCommand:ssms-like.column.delete"
+		"onCommand:ssms-like.column.delete",
+		"onCommand:ssms-like.indexes.rename",
+		"onCommand:ssms-like.indexes.enable",
+		"onCommand:ssms-like.indexes.disable"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -59,6 +63,10 @@
 			{
 				"command": "ssms-like.database.shrinkLog",
 				"title": "Shrink Log"
+			},
+			{
+				"command": "ssms-like.database.comment",
+				"title": "Comment"
 			},
 			{
 				"command": "ssms-like.database.new",
@@ -95,6 +103,18 @@
 			{
 				"command": "ssms-like.column.delete",
 				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.indexes.rename",
+				"title": "Rename"
+			},
+			{
+				"command": "ssms-like.indexes.rebuild",
+				"title": "Enable"
+			},
+			{
+				"command": "ssms-like.indexes.disable",
+				"title": "Disable"
 			}
 		],
 		"submenus": [
@@ -194,6 +214,21 @@
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == Column",
 					"submenu": "ssms-like/tasks",
 					"group": "4@2"
+				},
+				{
+					"command": "ssms-like.indexes.rename",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
+					"group": "5@0"
+				},
+				{
+					"command": "ssms-like.indexes.rebuild",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
+					"group": "5@1"
+				},
+				{
+					"command": "ssms-like.indexes.disable",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Index",
+					"group": "5@2"
 				}
 			]
 		}

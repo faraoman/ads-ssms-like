@@ -58,6 +58,13 @@ export function activate(context: vscode.ExtensionContext) {
     const deleteColumn = vscode.commands.registerCommand(Commands.IDs.Column.delete, Commands.Table.Column.DeleteAsync);
     context.subscriptions.push(renameColumn, deleteColumn);
     //#endregion
+
+    //#region Table-Indexes
+    const renameIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rename, Commands.Table.Indexes.RenameAsync);
+    const enableIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.rebuild, Commands.Table.Indexes.RebuildAsync);
+    const disableIndex = vscode.commands.registerCommand(Commands.IDs.Indexes.disable, Commands.Table.Indexes.DisableAsync);
+    context.subscriptions.push(renameIndex, enableIndex, disableIndex);
+    //#endregion
 }
 
 // this method is called when your extension is deactivated

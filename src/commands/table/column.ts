@@ -39,3 +39,7 @@ export async function DeleteAsync(oContext: azdata.ObjectExplorerContext) {
         }
     }
 }
+
+export async function CommentAsync(oContext: azdata.ObjectExplorerContext){
+
+}
