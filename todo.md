@@ -58,14 +58,22 @@
 
 ### Stored Procedure
 
- - [ ] Recompile
- - [ ] Rename
- - [ ] Delete
+ - [X] Recompile
+ - [X] Rename
+ - [X] Delete
 
 ### Functions - Table-valued
 
  - [ ] Recompile
  - [ ] Rename
+ - [ ] Delete
+
+### User
+
+ - [ ] Delete
+
+### Schema
+
  - [ ] Delete
 
 ## Extension

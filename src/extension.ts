@@ -107,6 +107,20 @@ export function activate(context: vscode.ExtensionContext) {
         context.subscriptions.push(recompileStoredProcedure, renameStoredProcedure, deleteStoredProcedure);
     }
     //#endregion
+
+    //#region User
+    {
+        const deleteUser = vscode.commands.registerCommand(Commands.IDs.User.delete, Commands.Security.User.DeleteAsync);
+        context.subscriptions.push(deleteUser);
+    }
+    //#endregion
+
+    //#region Schema
+    {
+        const deleteSchema = vscode.commands.registerCommand(Commands.IDs.Schema.delete, Commands.Security.Schema.DeleteAsync);
+        context.subscriptions.push(deleteSchema);
+    }
+    //#endregion
 }
 
 // this method is called when your extension is deactivated

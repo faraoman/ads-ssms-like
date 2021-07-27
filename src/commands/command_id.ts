@@ -54,3 +54,11 @@ export enum StoredProcedure {
     "rename" = "ssms-like.storedProcedure.rename",
     "delete" = "ssms-like.storedProcedure.delete",
 }
+
+export enum User {
+    "delete" = "ssms-like.user.delete",
+}
+
+export enum Schema {
+    "delete" = "ssms-like.schema.delete",
+}

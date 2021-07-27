@@ -45,7 +45,14 @@ export async function RunQuery(connection: azdata.IConnectionProfile, dbName: st
         if (connectionResult.connected) {
             let connectionUri = await azdata.connection.getUriForConnection(connection.id);
             let queryProvider = azdata.dataprotocol.getProvider<azdata.QueryProvider>(connection.providerName, azdata.DataProviderType.QueryProvider);
-            result = await queryProvider.runQueryAndReturn(connectionUri, query);
+            try {
+                result = await queryProvider.runQueryAndReturn(connectionUri, query);
+            } catch (e) {
+                result = {
+                    rowCount: -1, columnInfo: [], rows: []
+                }
+                console.log(e.message + "\r\n" + e.stack);
+            }
         } else {
             result = {
                 rowCount: -1, columnInfo: [], rows: []

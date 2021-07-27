@@ -47,7 +47,9 @@
 		"onCommand:ssms-like.constraint.delete",
 		"onCommand:ssms-like.storedProcedure.recompile",
 		"onCommand:ssms-like.storedProcedure.rename",
-		"onCommand:ssms-like.storedProcedure.delete"
+		"onCommand:ssms-like.storedProcedure.delete",
+		"onCommand:ssms-like.user.delete",
+		"onCommand:ssms-like.schema.delete"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -162,6 +164,14 @@
 			},
 			{
 				"command": "ssms-like.storedProcedure.delete",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.user.delete",
+				"title": "Delete"
+			},
+			{
+				"command": "ssms-like.schema.delete",
 				"title": "Delete"
 			}
 		],
@@ -328,6 +338,16 @@
 					"command": "ssms-like.storedProcedure.delete",
 					"when": "connectionProvider == MSSQL && nodeType && nodeType == StoredProcedure",
 					"group": "2@2"
+				},
+				{
+					"command": "ssms-like.user.delete",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == User",
+					"group": "1@1"
+				},
+				{
+					"command": "ssms-like.schema.delete",
+					"when": "connectionProvider == MSSQL && nodeType && nodeType == Schema",
+					"group": "1@1"
 				}
 			]
 		}
