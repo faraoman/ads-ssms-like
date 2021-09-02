@@ -22,21 +22,8 @@
             "outFiles": [
                 "${workspaceFolder}/out/**/*.js"
             ],
-            "preLaunchTask": "npm: watch"
-        },
-        {
-            "name": "Extension Tests",
-            "type": "sqlopsExtensionHost",
-            "request": "launch",
-            "runtimeExecutable": "azuredatastudio",
-            "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}",
-                "--extensionTestsPath=${workspaceFolder}/out/test"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/out/test/**/*.js"
-            ],
-            "preLaunchTask": "npm: watch"
+            "preLaunchTask": "npm: watch",
+            "timeout": 60000
         }
     ]
 }
